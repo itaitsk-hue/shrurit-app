@@ -1,0 +1,11 @@
+{
+  "name": "שחרורית - הדגמה",
+  "short_name": "שחרורית",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#09652f",
+  "lang": "he",
+  "dir": "rtl",
+  "icons": []
+}

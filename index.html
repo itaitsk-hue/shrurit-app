@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#09652f">
+<link rel="manifest" href="manifest.json">
+<title>שחרורית - הדגמה</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #f7f7f7;
+    font-family: Arial, "Noto Sans Hebrew", sans-serif;
+    color: #111;
+  }
+  .phone {
+    width: 100%;
+    min-height: 100vh;
+    background: #fff;
+  }
+  .statusbar {
+    height: 68px;
+    background: #050505;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px 0 18px;
+    font-size: 20px;
+  }
+  .status-left {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    direction: ltr;
+  }
+  .status-right {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    direction: ltr;
+  }
+  .battery {
+    border: 2px solid #ddd;
+    border-radius: 7px;
+    padding: 2px 5px;
+    font-size: 14px;
+  }
+  .greenbar {
+    height: 110px;
+    background: #09652f;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 0 26px;
+    gap: 28px;
+  }
+  .hamburger {
+    font-size: 40px;
+    line-height: 1;
+    font-weight: 300;
+  }
+  .bell {
+    font-size: 34px;
+  }
+  .help {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: white;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    font-weight: bold;
+  }
+  .brand {
+    font-size: 27px;
+    margin-right: auto;
+    white-space: nowrap;
+  }
+  .content {
+    padding: 55px 18px 100px;
+  }
+  h1 {
+    font-size: 44px;
+    margin: 0 28px 38px 0;
+    font-weight: 800;
+  }
+  .panel {
+    position: relative;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0,0,0,.12);
+    background: #fff;
+    min-height: 570px;
+    padding: 105px 18px 40px;
+  }
+  .toggles {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    height: 145px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,.08);
+    padding: 15px 20px;
+  }
+  .toggle-row {
+    height: 58px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 26px;
+  }
+  .switch {
+    width: 72px;
+    height: 32px;
+    border-radius: 18px;
+    background: #788bcf;
+    position: relative;
+    flex: 0 0 auto;
+  }
+  .check {
+    width: 43px;
+    height: 43px;
+    border-radius: 50%;
+    background: #5065c4;
+    color: white;
+    position: absolute;
+    right: -2px;
+    top: -6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  .section {
+    background: #f6f6f6;
+    min-height: 350px;
+    margin: 0 0 0;
+    padding: 0 0 25px;
+  }
+  .section-title {
+    font-size: 43px;
+    font-weight: 800;
+    padding: 0 28px 40px;
+    margin: 0;
+  }
+  .headers {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    font-size: 27px;
+    padding: 0 35px 15px;
+    text-align: center;
+  }
+  .headers div:last-child {
+    line-height: 1.15;
+  }
+  .request {
+    margin: 0 20px;
+    height: 125px;
+    background: #fff;
+    border-radius: 3px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.12);
+    display: grid;
+    grid-template-columns: 70px 1fr 105px 80px;
+    align-items: center;
+    direction: ltr;
+  }
+  .more {
+    font-size: 32px;
+    color: #777;
+    text-align: center;
+    line-height: 10px;
+  }
+  .accept {
+    direction: rtl;
+    justify-self: center;
+    width: 90px;
+    height: 105px;
+    border-radius: 40px;
+    background: #d8ebd1;
+    color: #707b71;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+  }
+  .datetime {
+    direction: rtl;
+    text-align: center;
+    font-size: 25px;
+    color: #777;
+    white-space: nowrap;
+  }
+  .down {
+    font-size: 34px;
+    color: #666;
+    text-align: center;
+  }
+  .editor {
+    margin: 35px 20px 0;
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 7px rgba(0,0,0,.12);
+  }
+  .editor-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 12px;
+  }
+  input[type="datetime-local"] {
+    width: 100%;
+    height: 52px;
+    border: 1px solid #bbb;
+    border-radius: 7px;
+    padding: 8px 12px;
+    font-size: 19px;
+    direction: ltr;
+    background: white;
+  }
+  .demo {
+    position: fixed;
+    bottom: 8px;
+    left: 8px;
+    background: rgba(0,0,0,.72);
+    color: white;
+    border-radius: 5px;
+    padding: 4px 8px;
+    font-size: 11px;
+    z-index: 10;
+  }
+  @media (min-width: 700px) {
+    .phone { max-width: 700px; margin: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="statusbar">
+    <div class="status-left"><span id="clock">09:45</span><span>◉</span><span>☑</span></div>
+    <div class="status-right"><span>4G+</span><span>⌁</span><span class="battery">72</span></div>
+  </div>
+
+  <div class="greenbar">
+    <div class="bell">♟</div>
+    <div class="help">?</div>
+    <div class="brand">משו"ב - שחרורית</div>
+    <div class="hamburger">☰</div>
+  </div>
+
+  <main class="content">
+    <h1>שחרורית</h1>
+
+    <div class="panel">
+      <div class="toggles">
+        <div class="toggle-row">
+          <div class="switch"><div class="check">✓</div></div>
+          <span>הצגת בקשות שף תוקפן</span>
+        </div>
+        <div class="toggle-row">
+          <div class="switch"><div class="check">✓</div></div>
+          <span>סידור בקשות מהחדש לישן</span>
+        </div>
+      </div>
+
+      <section class="section">
+        <h2 class="section-title">בקשות שחרור שנשלחו</h2>
+
+        <div class="headers">
+          <div></div>
+          <div>סטטוס</div>
+          <div>שעות&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;תאריך<br>שחרור</div>
+        </div>
+
+        <div class="request">
+          <div class="more">⋮</div>
+          <div class="accept">התקבל</div>
+          <div class="datetime" id="displayDate">10:00&nbsp;10/09/26</div>
+          <div class="down">⌄</div>
+        </div>
+
+        <div class="editor">
+          <div class="editor-title">שינוי שעה ותאריך, הדגמה</div>
+          <input id="datePicker" type="datetime-local" value="2026-09-10T10:00">
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<div class="demo">DEMO</div>
+
+<script>
+  const picker = document.getElementById('datePicker');
+  const display = document.getElementById('displayDate');
+
+  function formatDate(value) {
+    const d = new Date(value);
+    if (Number.isNaN(d.getTime())) return;
+    const hh = String(d.getHours()).padStart(2, '0');
+    const mm = String(d.getMinutes()).padStart(2, '0');
+    const dd = String(d.getDate()).padStart(2, '0');
+    const mo = String(d.getMonth() + 1).padStart(2, '0');
+    const yy = String(d.getFullYear()).slice(-2);
+    display.innerHTML = `${hh}:${mm}&nbsp;${dd}/${mo}/${yy}`;
+  }
+
+  picker.addEventListener('input', () => formatDate(picker.value));
+  formatDate(picker.value);
+</script>
+<script>if ("serviceWorker" in navigator) navigator.serviceWorker.register("./sw.js");</script>
+</body>
+</html>
